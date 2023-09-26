@@ -32,32 +32,51 @@ function handleButtonClick(event) {
             break;
     }
 }
-
 // Function to load images for a specific category
 function loadCategoryImages(category) {
     const imageGallery = document.querySelector('.image-gallery');
 
-    // Create and append image elements
+    // Clear the existing images
+    imageGallery.innerHTML = '';
+
+    // Create and append clickable image elements
     for (let i = 1; i <= 10; i++) {
         const img = document.createElement('img');
         img.src = `pics (${i}).jpg`; // Using the new naming convention
         img.alt = `Image ${i}`;
-        imageGallery.appendChild(img);
+        const anchor = document.createElement('a');
+        anchor.href = `pics (${i}).jpg`; // Link to the full-size image
+        anchor.target = '_blank'; // Open the image in a new tab
+        anchor.appendChild(img);
+        imageGallery.appendChild(anchor);
+    }
+}
+// Function to load images for a specific category
+function loadCategoryImages(category) {
+    const imageGallery = document.querySelector('.image-gallery');
+
+    // Clear the existing images
+    imageGallery.innerHTML = '';
+
+    // Create and append clickable image elements
+    for (let i = 1; i <= 10; i++) {
+        const img = document.createElement('img');
+        img.src = `pics (${i}).jpg`; // Using the new naming convention
+        img.alt = `Image ${i}`;
+        const anchor = document.createElement('a');
+        anchor.href = `pics (${i}).jpg`; // Link to the full-size image
+        anchor.target = '_blank'; // Open the image in a new tab
+        anchor.appendChild(img);
+        imageGallery.appendChild(anchor);
     }
 }
 
-// Check which category was clicked and load images accordingly
-document.addEventListener('DOMContentLoaded', () => {
-    const landingSection = document.querySelector('section.hero.landing');
-    if (landingSection) {
-        // Add the class to change the background image after a delay (e.g., 5 seconds)
-        setTimeout(() => {
-            landingSection.classList.add('landing-alternate');
-        }, 5000); // Change background after 5 seconds (5000 milliseconds)
-    }
+// Initial load of category images (you can call this function on page load)
+loadCategoryImages('portraits');
+
 // Function to call a phone number
 function callPhoneNumber(phoneNumber) {
-    window.location.href = 'tel:+254708281969' + phoneNumber;
+    window.location.href = 'tel:' + phoneNumber;
 }
 
 // Function to open the user's email client to send an email
@@ -67,10 +86,9 @@ function sendEmail() {
 
 // Function to open WhatsApp with a contact number
 function openWhatsApp(contactNumber) {
-    const whatsappURL = 'https://wa.me/+254708281969' + contactNumber;
+    const whatsappURL = 'https://wa.me/' + contactNumber;
     window.open(whatsappURL, '_blank');
 }
-
     // Add click event listeners to the buttons
     const homeButton = document.getElementById('home-button');
     const portraitsButton = document.getElementById('portraits-button');
